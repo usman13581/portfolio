@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-contact-api",
+  "version": "1.0.0",
+  "description": "Simple Node/Express API to handle contact form submissions and store them in PostgreSQL.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "pg": "^8.12.0"
+  }
+}
+

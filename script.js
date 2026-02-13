@@ -34,19 +34,41 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear().toString();
 }
 
-// Contact form (front-end only demo)
+// Contact form (talks to Node/Express API)
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
 
 if (contactForm && formStatus) {
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     formStatus.textContent = 'Sending...';
 
-    setTimeout(() => {
-      formStatus.textContent = 'Thank you for your message! This demo form does not send email, but you can contact me directly via the email above.';
+    const formData = new FormData(contactForm);
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const response = await fetch('http://localhost:4000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      formStatus.textContent = 'Thank you for your message! It has been saved successfully.';
       contactForm.reset();
-    }, 700);
+    } catch (error) {
+      console.error(error);
+      formStatus.textContent = 'Something went wrong. Please try again later or email me directly.';
+    }
   });
 }
 

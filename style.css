@@ -385,7 +385,7 @@ a {
 .project-card {
   position: relative;
   border-radius: var(--radius-lg);
-  padding: 1.4rem 1.25rem 1.3rem;
+  padding: 1.9rem 1.25rem 1.3rem; /* extra top padding so badge doesn't overlap text */
   border: 1px solid var(--border-subtle);
   background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), var(--bg-soft));
   box-shadow: var(--shadow-subtle);
@@ -393,7 +393,7 @@ a {
 
 .project-badge {
   position: absolute;
-  top: 0.9rem;
+  top: 0.6rem;
   right: 0.9rem;
   padding: 0.25rem 0.6rem;
   border-radius: var(--radius-full);
@@ -408,11 +408,20 @@ a {
 .project-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
+  padding-right: 2.6rem; /* keep text clear of badge */
 }
 
 .project-card p {
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.6rem;
   font-size: 0.9rem;
+  color: var(--text-muted);
+  padding-right: 2.4rem; /* keep text clear of badge */
+}
+
+.project-card p span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
